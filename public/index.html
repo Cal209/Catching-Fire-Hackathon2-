@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Wildfire Awareness - Report & Play</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="navbar">
+      <div class="logo">🔥 Wildfire Awareness</div>
+      <div class="nav-tabs">
+        <button class="nav-tab active" onclick="switchTab('report')">📍 Report Fire</button>
+        <button class="nav-tab" onclick="switchTab('game')">🎮 Play Game</button>
+      </div>
+    </div>
+
+    <!-- Report Tab -->
+    <div id="report-tab" class="tab-content active">
+      <div class="report-container">
+        <h1>📍 Anonymous Wildfire Report</h1>
+        <p class="subtitle">Help the community by reporting wildfires</p>
+
+        <div class="form-section">
+          <h2>Report Details</h2>
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="number" id="latitude" placeholder="e.g., 37.7749" step="0.0001">
+          </div>
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="number" id="longitude" placeholder="e.g., -122.4194" step="0.0001">
+          </div>
+          <div class="form-group">
+            <label for="severity">Severity (1-5)</label>
+            <input type="range" id="severity" min="1" max="5" value="3">
+            <span id="severity-display">3</span>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Describe what you see..."></textarea>
+          </div>
+          <button class="submit-btn" onclick="submitReport()">Submit Report</button>
+        </div>
+
+        <div class="map-section">
+          <h2>📍 Recent Reports</h2>
+          <div id="reports-container">
+            <p class="loading">Loading reports...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Tab -->
+    <div id="game-tab" class="tab-content">
+      <div class="game-container">
+        <h1>🎮 Wildfire Simulator</h1>
+        <p class="subtitle">Stop wildfires, earn coins, and upgrade equipment!</p>
+
+        <div class="game-hud">
+          <div class="hud-item"><span>💰 Coins:</span> <span id="coins-display">0</span></div>
+          <div class="hud-item"><span>🔥 Fires Stopped:</span> <span id="fires-stopped">0</span></div>
+          <div class="hud-item"><span>⭐ Score:</span> <span id="score-display">0</span></div>
+          <button class="restart-btn" onclick="restartGame()">↻ New Game</button>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
+
+        <div class="upgrades-section">
+          <h3>🛠️ Upgrades</h3>
+          <div class="upgrades-grid">
+            <div class="upgrade-card">
+              <div class="upgrade-name">💧 Water Tank</div>
+              <div class="upgrade-cost">Cost: <span id="cost-water">50</span> 💰</div>
+              <button onclick="buyUpgrade('water')">Buy</button>
+            </div>
+            <div class="upgrade-card">
+              <div class="upgrade-name">⚡ Speed Boost</div>
+              <div class="upgrade-cost">Cost: <span id="cost-speed">75</span> 💰</div>
+              <button onclick="buyUpgrade('speed')">Buy</button>
+            </div>
+            <div class="upgrade-card">
+              <div class="upgrade-name">👁️ Fire Vision</div>
+              <div class="upgrade-cost">Cost: <span id="cost-vision">100</span> 💰</div>
+              <button onclick="buyUpgrade('vision')">Buy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="leaderboard-section">
+          <h3>🏆 Leaderboard</h3>
+          <div id="leaderboard-container">
+            <p class="loading">Loading scores...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
